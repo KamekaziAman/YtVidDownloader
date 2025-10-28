@@ -1,0 +1,49 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% tailwind_css %}
+    <title>{% block title %}Site{% endblock %}</title>
+  </head>
+  <body class="text-gray-100">
+    <div class="min-h-screen flex flex-col relative">
+      <div class="absolute inset-0 -z-10 bg-gradient-to-b from-slate-900 via-gray-900 to-black"></div>
+
+      <header class="sticky top-0 z-20 backdrop-blur supports-[backdrop-filter]:bg-black/40 bg-black/50 border-b border-slate-800">
+        <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
+          <a href="/" class="flex items-center gap-2 font-semibold text-lg text-gray-100">
+            <span class="inline-block h-6 w-6 rounded bg-red-600"></span>
+            {% block header %}My App{% endblock %}
+          </a>
+          <div class="hidden md:flex items-center gap-6 text-sm">
+            <a href="/" class="text-gray-300 hover:text-red-400">Home</a>
+            <a href="#features" class="text-gray-300 hover:text-red-400">Features</a>
+            <a href="#contact" class="text-gray-300 hover:text-red-400">Contact</a>
+          </div>
+          <div class="md:hidden">
+            <button type="button" aria-label="Open menu" class="p-2 rounded hover:bg-white/10 text-gray-200">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      <main class="flex-grow container mx-auto px-4 py-6">
+        {% block content %}{% endblock %}
+      </main>
+
+      <footer class="border-t border-slate-800">
+        <div class="container mx-auto px-4 py-4 text-center text-sm text-gray-400">
+          {% block footer %}&copy; {{ now|default:"kazi" }}{% endblock %}
+        </div>
+      </footer>
+    </div>
+  </body>
+  
+</html>
+
+
